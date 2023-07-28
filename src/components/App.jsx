@@ -57,23 +57,42 @@ class App extends Component {
     }));
   };
 
+  listShowLogic = () => {
+    const { filter, contacts } = this.state;
+    const messageIsEmpty = (
+      <p className="containter__is-empty-message">Contact list is empty</p>
+    );
+    const messageIsNothingFound = (
+      <p className="containter__is-not-found-message">Nothing found</p>
+    );
+    if (contacts.length === 0) {
+      return messageIsEmpty;
+    } else if (this.getFilteredContacts().length === 0) {
+      return (
+        <React.Fragment>
+          <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
+          {messageIsNothingFound}
+        </React.Fragment>
+      );
+    } else
+      return (
+        <React.Fragment>
+          <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
+          <ContactList
+            contacts={this.getFilteredContacts()}
+            onDeleteClick={this.deleteContact}
+          />
+        </React.Fragment>
+      );
+  };
+
   render() {
-    const { filter } = this.state;
     return (
       <div className="container">
+        <h1>Phonebook</h1>
         <ContactForm onSubmitForm={this.addContact} />
-
-        {this.getFilteredContacts().length ? (
-          <React.Fragment>
-            <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
-            <ContactList
-              contacts={this.getFilteredContacts()}
-              onDeleteClick={this.deleteContact}
-            />
-          </React.Fragment>
-        ) : (
-          <p className="containter__is-empty-message">Contact list is empty</p>
-        )}
+        <h2>Contacts</h2>
+        {this.listShowLogic()}
       </div>
     );
   }

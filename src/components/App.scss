@@ -10,12 +10,22 @@
     background-color: $primary-background-color;
 }
 
-.containter__is-empty-message{
+.containter__is-empty-message
+,.containter__is-not-found-message {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
-    height: 160px;
     font-size: 24px;
     font-weight: 700;
+}
+
+.containter__is-empty-message{
+    height: 160px;
+    font-size: 24px;
+}
+
+.containter__is-not-found-message{
+    height: 90px;
+    font-size: 32px;
 }
