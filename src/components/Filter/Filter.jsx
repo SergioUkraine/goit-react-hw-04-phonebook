@@ -9,17 +9,20 @@ class Filter extends Component {
   render() {
     const { filter, onChangeInfo } = this.props;
     return (
-      <label htmlFor={this.filterId}>
-        {'Find contacts by name '}
-        <input
-          id={this.filterId}
-          type="text"
-          name="filter"
-          onChange={onChangeInfo}
-          value={filter}
-          required
-        />
-      </label>
+      <div className="filter">
+        <label className="filter__label" htmlFor={this.filterId}>
+          {'Find contacts by name '}
+          <input
+            id={this.filterId}
+            className="filter__input"
+            type="text"
+            name="filter"
+            onChange={onChangeInfo}
+            value={filter}
+            required
+          />
+        </label>
+      </div>
     );
   }
 }

@@ -9,7 +9,7 @@ class ContactList extends Component {
   render() {
     const { contacts, onDeleteClick } = this.props;
     return (
-      <ul>
+      <ul className='contact-list'>
         {contacts.map(({ id, name, number }) => {
           return (
             <ContactListItem

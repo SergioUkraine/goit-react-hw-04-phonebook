@@ -60,13 +60,20 @@ class App extends Component {
   render() {
     const { filter } = this.state;
     return (
-      <div>
+      <div className="container">
         <ContactForm onSubmitForm={this.addContact} />
-        <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
-        <ContactList
-          contacts={this.getFilteredContacts()}
-          onDeleteClick={this.deleteContact}
-        />
+
+        {this.getFilteredContacts().length ? (
+          <React.Fragment>
+            <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
+            <ContactList
+              contacts={this.getFilteredContacts()}
+              onDeleteClick={this.deleteContact}
+            />
+          </React.Fragment>
+        ) : (
+          <p className="containter__is-empty-message">Contact list is empty</p>
+        )}
       </div>
     );
   }

@@ -1,0 +1,30 @@
+@import 'styles/shared.scss';
+
+.filter{
+    margin: 0;
+    padding: 20px;
+}
+
+.filter__label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    &:hover {
+        .filter__input {
+            outline-color: $accent-color;
+            border-color: $accent-color;
+            }
+    }
+}
+
+.filter__input{
+    height: 24px;
+    border-radius: 4px;
+    width: 200px;
+        &:focus,
+        &:active,
+        &:hover {
+            outline-color: $accent-color;
+    }
+}

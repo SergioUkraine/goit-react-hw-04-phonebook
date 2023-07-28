@@ -1,0 +1,21 @@
+@import 'styles/shared.scss';
+
+.container{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    width: 500px;
+    border: solid darkblue 2px;
+    border-radius: 8px;
+    background-color: $primary-background-color;
+}
+
+.containter__is-empty-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 160px;
+    font-size: 24px;
+    font-weight: 700;
+}

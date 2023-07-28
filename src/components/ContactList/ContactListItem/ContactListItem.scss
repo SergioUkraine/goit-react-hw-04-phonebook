@@ -1,0 +1,56 @@
+@import 'styles/shared.scss';
+
+.contact-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-item__link{
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover .contact-item__number,
+    &:active .contact-item__number,
+    :focus .contact-item__number {
+        color: $telephone-hover;
+    }
+}
+
+.contact-item__name{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.contact-item__number{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+
+
+.contact-item__button{
+    margin-left: 50px;
+    width: 100px;
+    height: 30px;
+
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: $button-color;
+    border-color: transparent;
+    border-radius: 4px;
+    &:hover, &:active, &:focus{
+        background-color:$button-delete-hover;
+        color: $button-delete-hover-text;
+    } 
+}
