@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+//Components
 import ContactListItem from './ContactListItem';
+//Style
+import './ContactList.scss';
 
 class ContactList extends Component {
-  keys = () => {
-    return this.props.contacts.map(() => nanoid());
-  };
-  filterId = nanoid();
-
   render() {
-    const { contacts } = this.props;
-    const keys = this.keys();
+    const { contacts, onDeleteClick } = this.props;
     return (
       <ul>
-        {contacts.map(({ name, number }, index) => {
+        {contacts.map(({ id, name, number }) => {
           return (
             <ContactListItem
-              key={keys[index]}
+              key={id}
+              id={id}
               name={name}
               number={number}
+              onDeleteClick={onDeleteClick}
             />
           );
         })}
@@ -26,5 +25,16 @@ class ContactList extends Component {
     );
   }
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+};
 
 export default ContactList;

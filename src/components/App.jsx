@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
+//Style
+import './App.scss';
 
 class App extends Component {
   state = {
@@ -14,24 +16,25 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  filteredContacts = () => {
+  getFilteredContacts = () => {
     const filter = this.state.filter.toLowerCase();
     return this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter)
     );
   };
 
-  addField = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  getFilterQuery = e => {
+    this.setState({ filter: e.target.value });
   };
 
-  addContact = e => {
-    e.preventDefault();
-    const { name, number } = this.state;
+  addContact = contact => {
+    const { name, number } = contact;
+    if (this.isContactExist(name)) {
+      window.alert(name + ' is already in contacts!');
+      return;
+    }
     this.setState(prevState => ({
       contacts: [
         {
@@ -41,47 +44,32 @@ class App extends Component {
         },
         ...prevState.contacts,
       ],
-      name: '',
-      number: '',
+    }));
+  };
+
+  isContactExist = newContact => {
+    return this.state.contacts.some(contact => contact.name === newContact);
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
 
   render() {
-    const { name, number, filter } = this.state;
+    const { filter } = this.state;
     return (
       <div>
-        <ContactForm
-          onChangeInfo={this.addField}
-          onSubmitForm={this.addContact}
-          name={name}
-          number={number}
+        <ContactForm onSubmitForm={this.addContact} />
+        <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
+        <ContactList
+          contacts={this.getFilteredContacts()}
+          onDeleteClick={this.deleteContact}
         />
-        <Filter onChangeInfo={this.addField} filter={filter} />
-        <ContactList contacts={this.filteredContacts()} />
       </div>
     );
   }
 }
 
 export default App;
-
-// <div>
-//   <h1>Phonebook</h1>
-//   <ContactForm ... />
-
-//   <h2>Contacts</h2>
-//   <Filter ... />
-//   <ContactList ... />
-// </div>
-
-// {
-//   this.filterContacts() ? (
-//     <ContactList
-//       contacts={this.filterContacts()}
-//       filter={filter}
-//       onChangeInfo={this.addField}
-//     />
-//   ) : (
-//     <p>No contacts</p>
-//   );
-// }
