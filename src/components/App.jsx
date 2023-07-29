@@ -69,20 +69,20 @@ class App extends Component {
       return messageIsEmpty;
     } else if (this.getFilteredContacts().length === 0) {
       return (
-        <React.Fragment>
+        <div>
           <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
           {messageIsNothingFound}
-        </React.Fragment>
+        </div>
       );
     } else
       return (
-        <React.Fragment>
+        <div>
           <Filter filter={filter} onChangeInfo={this.getFilterQuery} />
           <ContactList
             contacts={this.getFilteredContacts()}
             onDeleteClick={this.deleteContact}
           />
-        </React.Fragment>
+        </div>
       );
   };
 
