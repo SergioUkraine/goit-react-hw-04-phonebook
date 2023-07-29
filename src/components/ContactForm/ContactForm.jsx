@@ -26,7 +26,11 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form className="contact-form" onSubmit={this.onSubmitForm}>
+      <form
+        className="contact-form"
+        onSubmit={this.onSubmitForm}
+        autoComplete="off"
+      >
         <label htmlFor={this.nameId} className="contact-form__label">
           {'Name'}
           <input

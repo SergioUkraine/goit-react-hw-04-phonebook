@@ -89,9 +89,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Phonebook</h1>
+        <h1 className="container__title">Phonebook</h1>
         <ContactForm onSubmitForm={this.addContact} />
-        <h2>Contacts</h2>
+        <h2 className="container__header">Contacts</h2>
         {this.listShowLogic()}
       </div>
     );
