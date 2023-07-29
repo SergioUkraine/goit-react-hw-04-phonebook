@@ -2,26 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 //Style
-import './ContactListItem.scss';
+import {
+  ListItem,
+  Link,
+  Name,
+  Phone,
+  ButtonDelete,
+} from './ContactListItem.styled';
 
 const ContactListItem = ({ id, name, number, onDeleteClick }) => {
   const telId = nanoid();
   return (
-    <li className="contact-item">
-      <a id={telId} className="contact-item__link" href={'tel:' + number}>
-        <p className="contact-item__name">{name}</p>
-        <p className="contact-item__number">{number}</p>
-      </a>
-      <button
-        className="contact-item__button"
+    <ListItem>
+      <Link id={telId} href={'tel:' + number}>
+        <Name>{name}</Name>
+        <Phone>{number}</Phone>
+      </Link>
+      <ButtonDelete
         type="button"
         onClick={() => {
           onDeleteClick(id);
         }}
       >
         Delete
-      </button>
-    </li>
+      </ButtonDelete>
+    </ListItem>
   );
 };
 

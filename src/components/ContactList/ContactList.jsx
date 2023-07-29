@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 //Components
 import ContactListItem from './ContactListItem';
 //Style
-import './ContactList.scss';
+import { List } from './ContactList.styled';
 
 const ContactList = ({ contacts, onDeleteClick }) => {
   return (
-    <ul className="contact-list">
+    <List>
       {contacts.map(({ id, name, number }) => {
         return (
           <ContactListItem
@@ -19,7 +19,7 @@ const ContactList = ({ contacts, onDeleteClick }) => {
           />
         );
       })}
-    </ul>
+    </List>
   );
 };
 

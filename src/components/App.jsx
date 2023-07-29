@@ -5,7 +5,13 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 //Style
-import './App.scss';
+import {
+  Container,
+  Title,
+  Header,
+  MeassageEmpty,
+  MeassageNotFound,
+} from './App.styled';
 
 class App extends Component {
   state = {
@@ -59,11 +65,9 @@ class App extends Component {
 
   listShowLogic = () => {
     const { filter, contacts } = this.state;
-    const messageIsEmpty = (
-      <p className="containter__is-empty-message">Contact list is empty</p>
-    );
+    const messageIsEmpty = <MeassageEmpty>Contact list is empty</MeassageEmpty>;
     const messageIsNothingFound = (
-      <p className="containter__is-not-found-message">Nothing found</p>
+      <MeassageNotFound>Nothing found</MeassageNotFound>
     );
     if (contacts.length === 0) {
       return messageIsEmpty;
@@ -88,12 +92,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1 className="container__title">Phonebook</h1>
+      <Container>
+        <Title>Phonebook</Title>
         <ContactForm onSubmitForm={this.addContact} />
-        <h2 className="container__header">Contacts</h2>
+        <Header>Contacts</Header>
         {this.listShowLogic()}
-      </div>
+      </Container>
     );
   }
 }

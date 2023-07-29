@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //Style
-import './Filter.scss';
+import { FilterContainer, Label, Input } from './Filter.styled';
 
 const Filter = ({ filter, onChangeInfo }) => {
   return (
-    <div className="filter">
-      <label className="filter__label">
+    <FilterContainer>
+      <Label>
         {'Find contacts by name '}
-        <input
-          className="filter__input"
+        <Input
           type="text"
           name="filter"
           onChange={onChangeInfo}
           value={filter}
           required
         />
-      </label>
-    </div>
+      </Label>
+    </FilterContainer>
   );
 };
 
