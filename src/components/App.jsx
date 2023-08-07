@@ -63,6 +63,20 @@ class App extends Component {
     }));
   };
 
+  componentDidUpdate(prevState) {
+    const contactsState = JSON.stringify(this.state.contacts);
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', contactsState);
+    }
+  }
+
+  componentDidMount() {
+    const contactsLocalStorage = JSON.parse(localStorage.getItem('contacts'));
+    if (Array.isArray(contactsLocalStorage)) {
+      this.setState({ contacts: contactsLocalStorage });
+    }
+  }
+
   listShowLogic = () => {
     const { filter, contacts } = this.state;
     const messageIsEmpty = <MeassageEmpty>Contact list is empty</MeassageEmpty>;
