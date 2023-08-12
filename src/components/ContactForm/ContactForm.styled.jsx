@@ -30,6 +30,7 @@ export const FormInput = styled.input`
   width: 300px;
   height: 24px;
   border-radius: 4px;
+  font-size: 18px;
   &:focus,
   &:active,
   &:hover {
