@@ -23,7 +23,7 @@ export const Input = styled.input`
   height: 24px;
   border-radius: 4px;
   width: 200px;
-  font-size: 18px;
+  font-size: 16px;
   &:focus,
   &:active,
   &:hover {
