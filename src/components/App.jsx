@@ -24,6 +24,20 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contactsLocalStorage = JSON.parse(localStorage.getItem('contacts'));
+    if (contactsLocalStorage) {
+      this.setState({ contacts: contactsLocalStorage });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const contactsState = JSON.stringify(this.state.contacts);
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', contactsState);
+    }
+  }
+
   getFilteredContacts = () => {
     const filter = this.state.filter.toLowerCase();
     return this.state.contacts.filter(contact =>
@@ -62,20 +76,6 @@ class App extends Component {
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
-
-  componentDidUpdate(prevState) {
-    const contactsState = JSON.stringify(this.state.contacts);
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', contactsState);
-    }
-  }
-
-  componentDidMount() {
-    const contactsLocalStorage = JSON.parse(localStorage.getItem('contacts'));
-    if (contactsLocalStorage) {
-      this.setState({ contacts: contactsLocalStorage });
-    }
-  }
 
   listShowLogic = () => {
     const { filter, contacts } = this.state;
