@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { colors } from '../variables';
+import { Form, Field, ErrorMessage } from 'formik';
 
 const { common, background, button } = colors;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   margin: 0;
   height: 150px;
   padding: 12px 16px;
@@ -16,6 +17,7 @@ export const Form = styled.form`
 `;
 
 export const FormLabel = styled.label`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,7 +28,7 @@ export const FormLabel = styled.label`
   }
 `;
 
-export const FormInput = styled.input`
+export const FormInput = styled(Field)`
   width: 300px;
   height: 24px;
   border-radius: 4px;
@@ -50,4 +52,13 @@ export const FormButton = styled.button`
   &:hover {
     background-color: ${common.accent};
   }
+`;
+
+export const ErrorMessageStyled = styled(ErrorMessage)`
+  position: absolute;
+  top: 32px;
+  left: 120px;
+  font-size: 10px;
+  font-weight: 500;
+  color: red;
 `;

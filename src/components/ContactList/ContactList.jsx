@@ -5,7 +5,7 @@ import ContactListItem from './ContactListItem';
 //Style
 import { List } from './ContactList.styled';
 
-const ContactList = ({ contacts, onDeleteClick }) => {
+function ContactList({ contacts, onDeleteClick }) {
   return (
     <List>
       {contacts.map(({ id, name, number }) => {
@@ -21,7 +21,7 @@ const ContactList = ({ contacts, onDeleteClick }) => {
       })}
     </List>
   );
-};
+}
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(

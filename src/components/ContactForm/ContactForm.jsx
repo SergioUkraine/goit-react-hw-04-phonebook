@@ -1,61 +1,49 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-//Style
-import { Form, FormLabel, FormInput, FormButton } from './ContactForm.styled';
+import * as yup from 'yup';
+import { Formik } from 'formik';
+import {
+  StyledForm,
+  FormLabel,
+  FormInput,
+  FormButton,
+  ErrorMessageStyled,
+} from './ContactForm.styled';
 
-class ContactForm extends Component {
-  state = { name: '', number: '' };
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  number: yup.string().required(),
+});
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+function ContactForm({ onSubmit }) {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    await onSubmit(values);
+    setSubmitting(false);
+    resetForm();
   };
-
-  addField = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmitForm = e => {
-    e.preventDefault();
-    this.props.onSubmitForm(this.state);
-    this.reset();
-  };
-
-  render() {
-    const { name, number } = this.state;
-    return (
-      <Form onSubmit={this.onSubmitForm} autoComplete="off">
-        <FormLabel>
-          {'Name'}
-          <FormInput
-            type="text"
-            name="name"
-            onChange={this.addField}
-            value={name}
-            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </FormLabel>
-        <FormLabel>
-          {'Number '}
-          <FormInput
-            type="tel"
-            name="number"
-            onChange={this.addField}
-            value={number}
-            pattern="\+?[0-9\s\-\(\)]+"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </FormLabel>
-        <FormButton type="submit">Add contact</FormButton>
-      </Form>
-    );
-  }
+  return (
+    <Formik
+      initialValues={{ name: '', number: '' }}
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+    >
+      {({ isSubmitting }) => (
+        <StyledForm>
+          <FormLabel>
+            {'Name'}
+            <FormInput type="text" name="name" />
+            <ErrorMessageStyled name="name" component="div" />
+          </FormLabel>
+          <FormLabel>
+            {'Number '}
+            <FormInput type="text" name="number" />
+            <ErrorMessageStyled name="number" component="div" />
+          </FormLabel>
+          <FormButton type="submit" disabled={isSubmitting}>
+            Add contact
+          </FormButton>
+        </StyledForm>
+      )}
+    </Formik>
+  );
 }
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
-};
 
 export default ContactForm;

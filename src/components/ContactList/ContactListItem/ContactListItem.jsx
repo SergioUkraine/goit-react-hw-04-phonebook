@@ -10,7 +10,7 @@ import {
   ButtonDelete,
 } from './ContactListItem.styled';
 
-const ContactListItem = ({ id, name, number, onDeleteClick }) => {
+function ContactListItem({ id, name, number, onDeleteClick }) {
   const telId = nanoid();
   return (
     <ListItem>
@@ -28,7 +28,7 @@ const ContactListItem = ({ id, name, number, onDeleteClick }) => {
       </ButtonDelete>
     </ListItem>
   );
-};
+}
 
 ContactListItem.propTypes = {
   id: PropTypes.string.isRequired,

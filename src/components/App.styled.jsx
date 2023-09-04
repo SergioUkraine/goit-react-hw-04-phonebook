@@ -25,7 +25,7 @@ export const Header = styled.h2`
   padding: 0;
 `;
 
-export const MeassageEmpty = styled.p`
+export const MessageEmpty = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ export const MeassageEmpty = styled.p`
   font-size: 24px;
 `;
 
-export const MeassageNotFound = styled.p`
+export const MessageNotFound = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;

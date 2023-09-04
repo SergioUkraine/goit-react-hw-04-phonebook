@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 //Style
 import { FilterContainer, Label, Input } from './Filter.styled';
 
-const Filter = ({ filter, onChangeInfo }) => {
+function Filter({ filter, onChangeInfo }) {
   return (
     <FilterContainer>
       <Label>
@@ -18,7 +18,7 @@ const Filter = ({ filter, onChangeInfo }) => {
       </Label>
     </FilterContainer>
   );
-};
+}
 
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
