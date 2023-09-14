@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import PropTypes from 'prop-types';
 import {
   StyledForm,
   FormLabel,
@@ -45,5 +46,9 @@ function ContactForm({ onSubmit }) {
     </Formik>
   );
 }
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ContactForm;
