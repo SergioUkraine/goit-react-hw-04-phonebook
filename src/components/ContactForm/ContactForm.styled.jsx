@@ -6,7 +6,7 @@ const { common, background, button } = colors;
 
 export const StyledForm = styled(Form)`
   margin: 0;
-  height: 150px;
+  height: 180px;
   padding: 12px 16px;
   display: flex;
   flex-direction: column;

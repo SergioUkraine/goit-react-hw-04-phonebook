@@ -11,7 +11,7 @@ import {
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.string().required(),
+  number: yup.number().required(),
 });
 
 function ContactForm({ onSubmit }) {
